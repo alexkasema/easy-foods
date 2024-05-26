@@ -1,6 +1,7 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500', '700'] });
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <main className="container mx-auto p-4">
           <Header />
           {children}
+          <Footer />
         </main>
         </body>
     </html>
