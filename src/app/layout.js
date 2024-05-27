@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { NextAuthProvider } from "@/components/AuthProvider/AuthProvider";
 
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500', '700'] });
@@ -15,11 +16,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <main className="container mx-auto p-4">
-          <Header />
-          {children}
-          <Footer />
-        </main>
+        <NextAuthProvider>
+          <main className="container mx-auto p-4">
+            <Header />
+            {children}
+            <Footer />
+          </main>
+        </NextAuthProvider>
         </body>
     </html>
   );
