@@ -1,6 +1,7 @@
 'use client';
 
 import UserForm from "@/components/UserForm/UserForm";
+import UserTabs from "@/components/UserTabs/UserTabs";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ const ProfilePage = () => {
 
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [profileFetched, setProfileFetched] = useState(false);
     const {status} = session;
 
     useEffect(() => {
@@ -20,6 +22,7 @@ const ProfilePage = () => {
             response.json().then(data => {
               setUser(data);
               setIsAdmin(data.admin);
+              setProfileFetched(true);
             })
           });
         }
@@ -49,7 +52,7 @@ const ProfilePage = () => {
     }
     
 
-    if (status === 'loading') {
+    if (status === 'loading' || !profileFetched) {
         return 'Loading...';
     }
 
@@ -59,9 +62,10 @@ const ProfilePage = () => {
 
     return (
         <section className="mt-8">
-            <div className="max-w-2xl mx-auto mt-8">
-                <UserForm user={user} onSave={handleProfileInfoUpdate} />
-            </div>
+          <UserTabs isAdmin={isAdmin} />
+          <div className="max-w-2xl mx-auto mt-8">
+              <UserForm user={user} onSave={handleProfileInfoUpdate} />
+          </div>
         </section>
     )
 }
