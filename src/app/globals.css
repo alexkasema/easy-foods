@@ -9,6 +9,9 @@
 .btn-primary {
     @apply px-2 md:px-[40px] lg:px-[42px] py-2 md:py-2 bg-accent rounded-lg md:rounded-2xl shadow-sm shadow-accent text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
+.btn-edit {
+    @apply px-2 md:px-[40px] lg:px-[42px] py-2 md:py-2 bg-primary rounded-lg md:rounded-2xl shadow-sm shadow-primary text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+}
 
 .btn-primary:disabled {
     @apply cursor-not-allowed bg-lightPrimary text-gray-500;
