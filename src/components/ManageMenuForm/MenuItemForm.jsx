@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import EditableImage from "../EditableImage/EditableImage";
+import MenuItemPriceProps from "../MenuItemPriceProps/MenuItemPriceProps";
 
 const MenuItemForm = ({ onSubmit, menuItem }) => {
   const [image, setImage] = useState(menuItem?.image || "");
@@ -8,6 +9,10 @@ const MenuItemForm = ({ onSubmit, menuItem }) => {
   const [basePrice, setBasePrice] = useState(menuItem?.basePrice || "");
   const [category, setCategory] = useState(menuItem?.category || "");
   const [categories, setCategories] = useState([]);
+  const [sizes, setSizes] = useState(menuItem?.sizes || []);
+  const [extraIngredientPrices, setExtraIngredientPrices] = useState(
+    menuItem?.extraIngredientPrices || []
+  );
 
   useEffect(() => {
     fetch("/api/categories").then((res) => {
@@ -26,6 +31,8 @@ const MenuItemForm = ({ onSubmit, menuItem }) => {
           description,
           basePrice,
           category,
+          sizes,
+          extraIngredientPrices,
         })
       }
       className="mt-8 max-w-2xl mx-auto"
@@ -68,6 +75,18 @@ const MenuItemForm = ({ onSubmit, menuItem }) => {
             type="text"
             value={basePrice}
             onChange={(ev) => setBasePrice(ev.target.value)}
+          />
+          <MenuItemPriceProps
+            name={"Sizes"}
+            addLabel={"Add item size"}
+            props={sizes}
+            setProps={setSizes}
+          />
+          <MenuItemPriceProps
+            name={"Extra ingredients"}
+            addLabel={"Add ingredients prices"}
+            props={extraIngredientPrices}
+            setProps={setExtraIngredientPrices}
           />
           <button className="btn-primary w-full" type="submit">
             Save
