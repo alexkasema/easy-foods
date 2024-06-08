@@ -34,7 +34,7 @@ export default function DeleteButton({ label, onDelete }) {
 
   return (
     <button
-      className="btn-primary"
+      className="btn-primary "
       type="button"
       onClick={() => setShowConfirm(true)}
     >
