@@ -5,8 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import { NextAuthProvider } from "@/components/AuthProvider/AuthProvider";
 import { Toaster } from "react-hot-toast";
 
-
-const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500', '700'] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export const metadata = {
   title: "Easy Foods",
@@ -15,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={roboto.className}>
         <NextAuthProvider>
           <main className="container mx-auto p-4">
@@ -25,7 +24,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </main>
         </NextAuthProvider>
-        </body>
+      </body>
     </html>
   );
 }
