@@ -30,7 +30,7 @@ const HomeMenu = () => {
           mainHeader={"Our Best Sellers"}
         />
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid sm:grid-cols-3 gap-3">
         {bestSellers?.length > 0 &&
           bestSellers.map((item) => {
             return <MenuItem key={item._id} {...item} />;

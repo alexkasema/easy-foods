@@ -22,5 +22,7 @@ export async function GET(req) {
 
   if (userEmail) {
     return Response.json(await Order.find({ userEmail }));
+  } else {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 }

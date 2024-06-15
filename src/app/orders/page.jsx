@@ -28,7 +28,7 @@ const OrdersPage = () => {
       <UserTabs isAdmin={profile.admin} />
       <div className="mt-8">
         {loadingOrders && <div>Loading orders...</div>}
-        {orders?.length > 0 &&
+        {orders?.length > 0 ? (
           orders.map((order) => (
             <div
               key={order._id}
@@ -63,7 +63,10 @@ const OrdersPage = () => {
                 </Link>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div>No orders yet</div>
+        )}
       </div>
     </section>
   );
