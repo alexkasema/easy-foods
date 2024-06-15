@@ -8,11 +8,20 @@ import CartProduct from "@/components/Menu/CartProduct";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { useProfile } from "@/components/UseProfile";
 import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CartPage = () => {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
   const [address, setAddress] = useState({});
   const { data: profileData } = useProfile();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.href.includes("canceled=1")) {
+        toast.error("Payment failed 😔");
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (profileData?.city) {
@@ -36,6 +45,7 @@ const CartPage = () => {
   function handleAddressChange(propName, value) {
     setAddress((prevAddress) => ({ ...prevAddress, [propName]: value }));
   }
+
   async function proceedToCheckout(ev) {
     ev.preventDefault();
     // address and shopping cart products
